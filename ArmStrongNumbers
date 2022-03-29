@@ -1,0 +1,57 @@
+import java.util.*;
+
+public class ArmStrongNumbers {
+    public static void main(String[] args) {
+        
+        Scanner in = new Scanner(System.in);
+        String numberinString = in.nextLine();
+        int length = numberinString.length();
+        Integer number = Integer.parseInt(numberinString);
+        
+        //System.out.println("Entered number is :"+number);
+        
+        boolean isArmStrong = checkForArmStrongNumber(number,length);
+        
+        System.out.println(isArmStrong);
+        
+    }
+    
+    public static boolean checkForArmStrongNumber(int number,int length){
+      
+      double sum = 0;
+      int number1 = number;
+      
+      if(number<0){
+        return false;
+      }
+      
+      while(number>10){
+        int n = number%10;
+        //System.out.println(n);
+        //sum = sum + Math.pow(n,length);
+        sum = sum + getPower(n,length);
+        //System.out.println(sum);
+        number = number/10;
+        //System.out.println(number);
+      }
+      
+      sum = sum+getPower(number,length);
+      
+      //System.out.println(sum);
+      
+      if(sum == number1){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    
+    public static int getPower(int base, int power){
+      int result = 1;
+      
+      for(int i=power;i>=1;i--){
+        result = result * base;
+      }
+      return result;
+    }
+}
